@@ -1,0 +1,48 @@
+# Cipher-Shift Cryptography Engine
+
+A lightweight, CLI-based encryption and decryption program written in Python. **Cipher-Shift** demonstrates core cryptographic concepts—such as prime number selection, Linear Congruential Generators (LCG), character ASCII shifting, binary conversion, and sequence reversal—using custom algorithms without third-party dependencies.
+
+> ⚠️ **Disclaimer**: This is an educational project intended for learning purposes only. Do not use it to secure sensitive data or production applications.
+
+---
+
+## 📸 Features
+
+* **Seed-Based Key Generation**: Uses a user-provided numeric PIN to generate deterministic shift keys.
+* **Custom LCG Pseudo-Randomness**: Implements a standard 32-bit Linear Congruential Generator.
+* **Prime Number Search**: Finds the next prime number greater than the seed PIN.
+* **Reversed Binary Encoding**: Converts shifted ASCII character values into binary representations and reverses their order.
+* **Flexible Input Parsing**: Accurately parses raw binary strings, comma-separated lists, array formats (`[...]`), and quoted strings (`'...'` or `"..."`).
+
+---
+
+## 🛠️ How It Works
+
+1. **Shift Key Derivation**:
+   * Given a non-negative seed PIN:
+     * Calculates the **next prime number** greater than the PIN.
+     * Calculates a **pseudo-random number** using LCG parameters ($a = 1103515245$, $c = 12345$, $m = 2^{31}$).
+     * Computes key: $\text{key} = (\text{prime} + \text{LCG}) \pmod{256}$.
+2. **Encryption**:
+   * Each character in the input string is converted to its ASCII/Unicode code point.
+   * The `shift_key` is added to the value.
+   * The result is converted to binary and the entire sequence of binary codes is reversed manually.
+3. **Decryption**:
+   * Reverses the binary array back to original character order.
+   * Converts binary strings back to integers and subtracts the `shift_key`.
+   * Reconstructs the original plaintext message.
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+* [Python 3.x](https://www.python.org/) installed on your machine.
+
+### Running the Application
+
+Run the Python script directly from your terminal:
+
+```bash
+python "Cypher-Shift Main code.py"
